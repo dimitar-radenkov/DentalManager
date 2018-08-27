@@ -1,0 +1,35 @@
+﻿@page
+@model DentalManager.Web.Pages.Patients.IndexModel
+@{
+    ViewData["Title"] = "All Patients";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<a asp-page="/Patients/Add" class="btn btn-primary">Add Patient</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var patient in this.Model.AllPatiens)
+    {
+        <tr>
+            <td>@patient.Name</td>
+            <td>@patient.Email</td>
+            <td>@patient.PhoneNumber</td>
+            <td>
+                <a href="#">TODO</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+

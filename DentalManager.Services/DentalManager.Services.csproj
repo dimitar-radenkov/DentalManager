@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyVersion>1.18239.27.0</AssemblyVersion>
+    <FileVersion>1.18239.27.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DentalManager.Data\DentalManager.Data.csproj" />
+    <ProjectReference Include="..\DentalManager.Models\DentalManager.Models.csproj" />
+  </ItemGroup>
+
+</Project>
