@@ -1,0 +1,38 @@
+﻿@page
+@model DentalManager.Web.Pages.Arrangments.AddModel
+@{
+    ViewData["Title"] = "Add Arrangment";
+}
+
+<h2>Add Arrangment</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-page="Add" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="InputModel.PatientId" class="control-label"></label>
+                <select asp-for="InputModel.PatientId" asp-items="this.Model.InputModel.Patients" class="form-control"></select>
+                <span asp-validation-for="InputModel.PatientId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="InputModel.DateTime" class="control-label"></label>
+                <input asp-for="InputModel.DateTime" class="form-control" />
+                <span asp-validation-for="InputModel.DateTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="InputModel.Notice" class="control-label"></label>
+                <textarea asp-for="InputModel.Notice" class="form-control"></textarea>
+                <span asp-validation-for="InputModel.Notice" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Add Arrangment" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -36,6 +36,7 @@ namespace DentalManager.Web
             });
 
             services.AddTransient<IPatientsService, PatientsService>();
+            services.AddTransient<IArrangmentsService, ArrangmentsService>();
 
             services.AddDbContext<DentalManagerDbContext>(options => 
                 options.UseSqlServer(DbConstants.CONN_STRING));
@@ -63,9 +64,15 @@ namespace DentalManager.Web
                 options.SlidingExpiration = true;
             });
 
+
             services.AddAutoMapper();
 
             services.AddMvc()
+                .AddRazorPagesOptions(options => 
+                {
+                    options.Conventions.AuthorizeFolder("/Patients");
+                    options.Conventions.AuthorizeFolder("/Arrangments");
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

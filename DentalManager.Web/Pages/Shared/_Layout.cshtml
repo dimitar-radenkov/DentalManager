@@ -29,9 +29,16 @@
                 <a asp-page="/Index" class="navbar-brand">Dental Manager</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Patients/Index">Patients</a></li>
-                </ul>
+                @{
+                    if (this.User.Identity.IsAuthenticated)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li><a asp-page="/patients/index">Patients</a></li>
+                            <li><a asp-page="/arrangments/index">Arrangments</a></li>
+                        </ul>
+                    }
+                }
+
                 <partial name="_LoginPartial" />
             </div>
         </div>

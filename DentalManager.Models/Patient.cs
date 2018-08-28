@@ -17,6 +17,6 @@
 
         public ICollection<Arrangment> Arrangments { get; set; }
 
-        public ICollection<Document> Document { get; set; }
+        public ICollection<Document> Documents { get; set; }
     }
 }

@@ -45,5 +45,47 @@
             await this.db.Patients
                 .Select(p => this.mapper.Map<PatientViewModel>(p))
                 .ToListAsync();
+
+        public async Task<PatientViewModel> GetByIdAsync(int id)
+        {
+            var patient = await this.db.Patients.FindAsync(id);
+            if (patient == null)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
+            return this.mapper.Map<PatientViewModel>(patient);
+        }
+
+        public async Task<DetailsPatientViewModel> GetDetailsAsync(int id)
+        {
+            var patient = await this.db.Patients
+                .Include(p => p.Arrangments)
+                .Include(p => p.Documents)
+                .FirstAsync(p => p.Id == id);
+
+            if (patient == null)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
+            return this.mapper.Map<DetailsPatientViewModel>(patient);
+        }
+
+        public async Task UpdateAsync(int id, string name, string email, string phoneNumber)
+        {
+            var patient = await this.db.Patients.FindAsync(id);
+            if (patient == null)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
+            patient.Name = name;
+            patient.Email = email;
+            patient.PhoneNumber = phoneNumber;
+
+            this.db.Patients.Update(patient);
+            await this.db.SaveChangesAsync();
+        }
     }
 }

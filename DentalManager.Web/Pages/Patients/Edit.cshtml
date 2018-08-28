@@ -1,10 +1,10 @@
-﻿@page
-@model DentalManager.Web.Pages.Patients.AddModel
+﻿@page "{id:int}"
+@model DentalManager.Web.Pages.Patients.EditModel
 @{
-    ViewData["Title"] = "Add Patient";
+    ViewData["Title"] = "Edit Patient";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Edit Patient</h2>
 
 <hr />
 <form method="post" class="form-horizontal">
@@ -16,25 +16,26 @@
             <input asp-for="InputModel.Name" class="form-control">
             <span asp-validation-for="InputModel.Name" class="text-danger"></span>
         </div>
-        
+
     </div>
     <div class="form-group">
         <label asp-for="InputModel.Email" class="col-sm-3 control-label"></label>
         <div class="col-sm-8">
             <input asp-for="InputModel.Email" class="form-control">
             <span asp-validation-for="InputModel.Email" class="text-danger"></span>
-        </div>    
+        </div>
     </div>
     <div class="form-group">
         <label asp-for="InputModel.PhoneNumber" class="col-sm-3 control-label"></label>
         <div class="col-sm-8">
             <input asp-for="InputModel.PhoneNumber" class="form-control">
             <span asp-validation-for="InputModel.PhoneNumber" class="text-danger"></span>
-        </div>    
+        </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-10">
-            <button type="submit" class="btn btn-success">Add Patient</button>
+            <button type="submit" class="btn btn-success">Update Patient</button>
         </div>
     </div>
 </form>
+

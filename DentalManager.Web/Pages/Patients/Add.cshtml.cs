@@ -1,15 +1,13 @@
 ﻿namespace DentalManager.Web.Pages.Patients
 {
-    using System;
-    using System.Threading.Tasks;
     using DentalManager.Models.BindingModels;
     using DentalManager.Services.Contracts;
     using DentalManager.Web.Extensions;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using System;
+    using System.Threading.Tasks;
 
-    [Authorize]
     public class AddModel : PageModel
     {
         private readonly IPatientsService patientsService;
@@ -34,14 +32,14 @@
             try
             {
                 await this.patientsService.AddAsync(
-                this.InputModel.Name,
-                this.InputModel.Email,
-                this.InputModel.PhoneNumber);
+                    this.InputModel.Name,
+                    this.InputModel.Email,
+                    this.InputModel.PhoneNumber);
 
                 this.AddSuccessMessage("Patient has been added successfully");
                 return this.RedirectToPage("/Patients/Index");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 this.AddDangerMessage("Unable to add patient.");
                 return this.Page();              

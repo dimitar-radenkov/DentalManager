@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-DentalManager.Web-B258937B-13BB-4C5A-B17C-8184D04CD7EA</UserSecretsId>
-    <AssemblyVersion>1.18239.27.0</AssemblyVersion>
-    <FileVersion>1.18239.27.0</FileVersion>
+    <AssemblyVersion>1.18240.28.0</AssemblyVersion>
+    <FileVersion>1.18240.28.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Manipulations\" />
-    <Folder Include="Pages\Arrangments\" />
+    <Folder Include="Pages\Shared\EditorTemplates\" />
   </ItemGroup>
 
   <ItemGroup>

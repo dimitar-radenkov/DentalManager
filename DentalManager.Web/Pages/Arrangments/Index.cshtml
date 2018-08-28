@@ -1,0 +1,26 @@
+﻿@page
+@model DentalManager.Web.Pages.Arrangments.IndexModel
+@{
+    ViewData["Title"] = "Arrangements";
+}
+
+<h2>Arrangements</h2>
+
+<a asp-page="/Arrangments/Add" class="btn btn-primary">Add Arrangment</a>
+
+<hr />
+
+<div class="row">
+    @foreach (var item in this.Model.Arrangments)
+    {
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">       
+                <div class="caption">
+                    <p class="glyphicon glyphicon-user"> @item.PatientName</p><br />
+                    <p class="glyphicon glyphicon-time"> @item.DateTime.ToString()</p><br />
+                    <p class="glyphicon glyphicon-pencil"> @item.Notice</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
