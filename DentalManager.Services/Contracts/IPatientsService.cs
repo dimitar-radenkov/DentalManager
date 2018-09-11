@@ -12,7 +12,7 @@
 
         Task<DetailsPatientViewModel> GetDetailsAsync(int id);
 
-        Task AddAsync(string name, string email, string phoneNumber);
+        Task<int> AddAsync(string name, string email, string phoneNumber);
 
         Task UpdateAsync(int id, string name, string email, string phoneNumber);
     }

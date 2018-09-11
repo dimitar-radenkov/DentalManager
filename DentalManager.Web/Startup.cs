@@ -1,11 +1,14 @@
 namespace DentalManager.Web
 {
     using System;
+    using System.Text;
+    using AutoMapper;
+    using DentalManager.Common.Constants;
     using DentalManager.Data.Definitions;
-    using DentalManager.Web.Extensions;
     using DentalManager.Services;
     using DentalManager.Services.Contracts;
     using DentalManager.Web.Data;
+    using DentalManager.Web.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -14,7 +17,7 @@ namespace DentalManager.Web
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using AutoMapper;
+    using Microsoft.IdentityModel.Tokens;
 
     public class Startup
     {
@@ -37,21 +40,7 @@ namespace DentalManager.Web
 
             services.AddTransient<IPatientsService, PatientsService>();
             services.AddTransient<IArrangmentsService, ArrangmentsService>();
-
-            services.AddDbContext<DentalManagerDbContext>(options => 
-                options.UseSqlServer(DbConstants.CONN_STRING));
-
-            services
-                .AddDefaultIdentity<IdentityUser>(options => 
-                {
-                    options.Password.RequireDigit = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireNonAlphanumeric = false;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequiredLength = 6;
-                })
-                .AddEntityFrameworkStores<DentalManagerDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddTransient<ILoginService, LoginService>();
          
             services.ConfigureApplicationCookie(options =>
             {
@@ -64,6 +53,38 @@ namespace DentalManager.Web
                 options.SlidingExpiration = true;
             });
 
+
+            services
+                .AddAuthentication()
+                .AddJwtBearer(x => 
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {                      
+                        ValidIssuer = JwtContansts.ISSUER,
+                        ValidAudience = JwtContansts.AUDIENCE,
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(JwtContansts.SECRET)),
+                    };
+                });
+
+            services.AddDbContext<DentalManagerDbContext>(options =>
+                 options.UseSqlServer(DbConstants.CONN_STRING));
+
+            services
+                .AddIdentity<IdentityUser, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequiredLength = 6;
+                })
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<DentalManagerDbContext>();
 
             services.AddAutoMapper();
 
@@ -98,8 +119,6 @@ namespace DentalManager.Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-            app.UseHttpsRedirection();
-
             app.UseMvc();
         }    
     }

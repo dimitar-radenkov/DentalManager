@@ -22,7 +22,7 @@
             this.mapper = mapper;
         }
 
-        public async Task AddAsync(string name, string email, string phoneNumber)
+        public async Task<int> AddAsync(string name, string email, string phoneNumber)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -39,6 +39,8 @@
 
             this.db.Patients.Add(patient);
             await this.db.SaveChangesAsync();
+
+            return patient.Id;
         }
 
         public async Task<IEnumerable<PatientViewModel>> AllAsync() =>
@@ -48,7 +50,9 @@
 
         public async Task<PatientViewModel> GetByIdAsync(int id)
         {
-            var patient = await this.db.Patients.FindAsync(id);
+            var patient = await this.db.Patients
+                .Include(p => p.Arrangments)
+                .FirstOrDefaultAsync(p => p.Id == id);
             if (patient == null)
             {
                 throw new ArgumentException(nameof(id));

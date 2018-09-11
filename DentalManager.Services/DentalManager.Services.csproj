@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <AssemblyVersion>1.18240.28.0</AssemblyVersion>
-    <FileVersion>1.18240.28.0</FileVersion>
+    <AssemblyVersion>1.18254.11.0</AssemblyVersion>
+    <FileVersion>1.18254.11.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,8 +12,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DentalManager.Common\DentalManager.Common.csproj" />
     <ProjectReference Include="..\DentalManager.Data\DentalManager.Data.csproj" />
     <ProjectReference Include="..\DentalManager.Models\DentalManager.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.IdentityModel.Tokens">
+      <HintPath>C:\Program Files (x86)\dotnet\sdk\NuGetFallbackFolder\microsoft.identitymodel.tokens\5.2.0\lib\netstandard1.4\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>C:\Program Files (x86)\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.2.0\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

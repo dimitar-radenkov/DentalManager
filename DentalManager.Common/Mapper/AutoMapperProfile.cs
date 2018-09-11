@@ -11,7 +11,8 @@
         {
             this.CreateMap<Patient, PatientViewModel>();
 
-            this.CreateMap<Patient, DetailsPatientViewModel>();
+            this.CreateMap<Patient, DetailsPatientViewModel>()
+                .ForMember(vm => vm.Arrangments, cfg => cfg.MapFrom(m => m.Arrangments));
 
             this.CreateMap<Arrangment, ArrangmentViewModel>()
                 .ForMember(vm => vm.PatientName, cfg => cfg.MapFrom(m => m.Patient.Name));

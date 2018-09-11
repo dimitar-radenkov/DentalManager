@@ -4,7 +4,16 @@
     ViewData["Title"] = "Patient Details";
 }
 
-<h2>Patient Details</h2>
+<h2>@Model.PatientDetails.Name</h2>
 
+<ul>
+    @foreach (var item in Model.PatientDetails.Arrangments)
+    {
+        <li>
+            <p>@item.DateTime</p>
+            <p>@item.Notice</p>
+        </li>
+    }
+</ul>
 
 
