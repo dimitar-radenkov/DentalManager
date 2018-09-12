@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welcome to Dental Manager</h1>
+        <div *ngIf="!authService.isAuthenticated()">
+            <p>
+                If you like to use this application functionality you should
+            </p>
+            <p>
+                <a class="btn btn-primary" routerLink="login">Login</a>
+            </p>
+        </div>
+        <div *ngIf="authService.isAuthenticated()">
+            <p>
+                <span>Have a check on Patients</span>
+            </p>
+        </div>
+    </div>
+</div>

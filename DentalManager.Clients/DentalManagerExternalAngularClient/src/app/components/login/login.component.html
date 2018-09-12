@@ -1,0 +1,35 @@
+<div class="container">
+    <h1>Login Form</h1>
+    <form #loginForm="ngForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" required minlength="3" [(ngModel)]="model.username" #username="ngModel">
+        <div class="alert alert-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+            <div *ngIf="username.errors?.required">
+                User name is required
+            </div>
+            <div *ngIf="username.errors?.minlength">
+                Username must atleast 3 symbols
+            </div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password"  required minlength="6" [(ngModel)]="model.password" #password="ngModel">
+        <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+            <div *ngIf="password.errors?.required">
+                Password is required
+            </div>
+            <div *ngIf="password.errors?.minlength">
+                Password must atleast 6 symbols
+            </div>
+        </div>
+      </div> 
+  
+      <button type="submit" class="btn btn-success" (click)="onLogin()" [disabled]="loginForm.form.invalid">Login</button>
+    </form>
+    <div class="alert alert-danger" *ngIf=failedToLogin>
+      Wrong username or password
+    </div>
+  </div>
