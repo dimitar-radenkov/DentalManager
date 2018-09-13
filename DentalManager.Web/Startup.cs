@@ -53,7 +53,6 @@ namespace DentalManager.Web
                 options.SlidingExpiration = true;
             });
 
-
             services
                 .AddAuthentication()
                 .AddJwtBearer(x => 
@@ -88,6 +87,7 @@ namespace DentalManager.Web
 
             services.AddAutoMapper();
 
+            services.AddCors();
             services.AddMvc()
                 .AddRazorPagesOptions(options => 
                 {
@@ -118,6 +118,11 @@ namespace DentalManager.Web
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseAuthentication();
             app.UseMvc();
         }    

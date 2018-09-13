@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Add Patient</h2>
+  <form #loginForm="ngForm">
+    <div class="form-group">
+      <label for="patientName">Name</label>
+      <input type="text" class="form-control" id="patientName" name="patientName" required minlength="5" [(ngModel)]="model.name"
+        #patientName="ngModel">
+      <div class="alert alert-danger" *ngIf="patientName.invalid && (patientName.dirty || patientName.touched)">
+        <div *ngIf="patientName.errors?.required">
+          Name is required
+        </div>
+        <div *ngIf="patientName.errors?.minlength">
+          Name must atleast 5 symbols
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="text" class="form-control" id="email" name="email" required email [(ngModel)]="model.email" #email="ngModel">
+      <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors?.required">
+          Email is required
+        </div>
+        <div *ngIf="email.errors?.email">
+          This is not valid email address
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="model.phoneNumber"
+        #phoneNumber="ngModel">
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="onAdd()" [disabled]="loginForm.form.invalid">Add</button>
+  </form>
+</div>

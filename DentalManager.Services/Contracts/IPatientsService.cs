@@ -14,6 +14,8 @@
 
         Task<int> AddAsync(string name, string email, string phoneNumber);
 
+        Task DeleteAsync(int id);
+
         Task UpdateAsync(int id, string name, string email, string phoneNumber);
     }
 }

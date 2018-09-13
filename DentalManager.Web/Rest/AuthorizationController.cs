@@ -1,5 +1,6 @@
-﻿namespace DentalManager.Web.WebApi
+﻿namespace DentalManager.Web.Rest
 {
+    using System;
     using System.Threading.Tasks;
     using DentalManager.Models.WebApi;
     using DentalManager.Services.Contracts;
@@ -25,11 +26,18 @@
                 return this.BadRequest();
             }
 
-            var token = await this.loginService.LoginAsync(
-                loginBindingModel.Username, 
-                loginBindingModel.Password);      
+            try
+            {
+                var token = await this.loginService.LoginAsync(
+                    loginBindingModel.Username,
+                    loginBindingModel.Password);
 
-            return this.Ok(new { Token = token });
+                return this.Ok(new { Token = token });
+            }
+            catch (Exception)
+            {
+                return this.BadRequest("Wrong username or password");
+            }
         }
     }
 }

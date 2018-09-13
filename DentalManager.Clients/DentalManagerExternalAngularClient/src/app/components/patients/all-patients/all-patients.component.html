@@ -1,0 +1,28 @@
+<h2>All Patients</h2>
+
+<a class="btn btn-primary" routerLink="add">Add Patient</a>
+<hr>
+<div *ngIf=dataReceived>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tr *ngFor="let patient of allPatients">
+      <td>{{patient.name}}</td>
+      <td>{{patient.email}}</td>
+      <td>{{patient.phoneNumber}}</td>
+      <td>
+        <a routerLink="edit/{{patient.id}}" class="btn btn-primary">Edit</a>
+        <!-- <a routerLink="details/{{patient.id}}" class="btn btn-warning">Details</a> -->
+        <button (click)="onDelete(patient.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    
+  </table>
+</div>

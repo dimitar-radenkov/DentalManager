@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class EditPatientBindingModels
+    public class EditPatientBindingModel
     {
         public const int NAME_MIN_LEN = 5;
         public const int NAME_MAX_LEN = 50;

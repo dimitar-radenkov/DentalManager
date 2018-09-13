@@ -13,7 +13,7 @@
         private readonly IPatientsService patientsService;
 
         [BindProperty]
-        public EditPatientBindingModels InputModel { get; set; }
+        public EditPatientBindingModel InputModel { get; set; }
 
         public EditModel(IPatientsService patientsService)
         {
@@ -25,7 +25,7 @@
             try
             {
                 var patient = await this.patientsService.GetByIdAsync(id);
-                this.InputModel = new EditPatientBindingModels
+                this.InputModel = new EditPatientBindingModel
                 {
                     Name = patient.Name,
                     Email = patient.Email,
@@ -34,7 +34,7 @@
             }
             catch (Exception)
             {
-                this.AddWarningMessage("Unable to get information for patient");
+                this.AddWarningMessage("Unable to get information about patient");
             }
 
             return this.Page();

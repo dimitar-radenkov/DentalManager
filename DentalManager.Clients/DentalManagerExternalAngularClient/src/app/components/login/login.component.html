@@ -29,7 +29,4 @@
   
       <button type="submit" class="btn btn-success" (click)="onLogin()" [disabled]="loginForm.form.invalid">Login</button>
     </form>
-    <div class="alert alert-danger" *ngIf=failedToLogin>
-      Wrong username or password
-    </div>
   </div>

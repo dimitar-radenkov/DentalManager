@@ -10,6 +10,7 @@
     using DentalManager.Services.Contracts;
     using DentalManager.Web.Data;
     using Microsoft.EntityFrameworkCore;
+    using Z.EntityFramework.Plus;
 
     public class PatientsService : IPatientsService
     {
@@ -47,6 +48,14 @@
             await this.db.Patients
                 .Select(p => this.mapper.Map<PatientViewModel>(p))
                 .ToListAsync();
+
+        public async Task DeleteAsync(int id)
+        {
+            await this.db.Patients
+                .Where(x => x.Id == id)
+                .DeleteAsync();
+            this.db.SaveChanges();
+        }
 
         public async Task<PatientViewModel> GetByIdAsync(int id)
         {
