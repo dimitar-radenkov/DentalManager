@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { LoginModel } from '../models/LoginModel';
-import { AppSettings } from '../app.settings';
+import { AppSettings } from '../../app.settings';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthService {
 
   set token(authToken : string){
     this.authToken = authToken;
-    localStorage.setItem(AppSettings.AUTH_KEY, this.authToken);
+    localStorage.setItem(AppSettings.AUTH_KEY, authToken);
   }
 
   constructor(private http: HttpClient) { }

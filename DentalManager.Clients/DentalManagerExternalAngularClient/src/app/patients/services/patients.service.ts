@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { AppSettings } from '../app.settings';
+import { AppSettings } from '../../app.settings';
 import { AddPatientModel } from '../models/AddPatientModel';
 import { EditPatientModel } from '../models/EditPatientModel';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PatientsService {
 
   constructor(private http: HttpClient) { }
@@ -20,7 +18,8 @@ export class PatientsService {
   add(patient : AddPatientModel){
     return this.http.post(
       AppSettings.ADD_PATIENT_ENDPOINT,      
-      JSON.stringify(patient));
+      JSON.stringify(patient),
+      {headers: this.createHeaders()});
   }
 
   get(id){
@@ -31,7 +30,8 @@ export class PatientsService {
   edit(id, model: EditPatientModel){
     return this.http.post(
       `${AppSettings.EDIT_PATIENT_ENDPOINT}/${id}`,     
-      JSON.stringify(model));
+      JSON.stringify(model),
+      {headers: this.createHeaders()});
   }
 
   delete(id){
@@ -44,7 +44,6 @@ export class PatientsService {
     return new HttpHeaders(
       { 
         "Content-Type" : "application/json",
-        "Authorization" : "Bearer " + localStorage.getItem(AppSettings.AUTH_KEY),
       });
   }
 }

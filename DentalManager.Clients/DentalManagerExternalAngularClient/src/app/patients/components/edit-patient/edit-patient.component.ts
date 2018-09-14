@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EditPatientModel } from '../../../models/EditPatientModel';
-import { PatientsService } from '../../../services/patients.service';
+import { EditPatientModel } from '../../models/EditPatientModel';
+import { PatientsService } from '../../services/patients.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';

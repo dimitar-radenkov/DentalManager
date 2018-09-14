@@ -3,39 +3,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { AuthModule } from './auth/auth.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { CustomFormsModule } from 'ng2-validation'
 import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
-import { AuthService } from './services/auth.service';
-
-import { AppRoutes } from './routes/AppRoutes';
-import { AllPatientsComponent } from './components/patients/all-patients/all-patients.component';
-import { AddPatientComponent } from './components/patients/add-patient/add-patient.component';
-import { EditPatientComponent } from './components/patients/edit-patient/edit-patient.component';
 import { TokenInterceptor } from './interceptors/token-interceptor';
-
-
+import { PatientsModule } from './patients/patients.module';
+import { AuthService } from './auth/services/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    LoginComponent,
     HomeComponent,
-    AllPatientsComponent,
-    AddPatientComponent,
-    EditPatientComponent
   ],
   imports: [
-    RouterModule.forRoot(AppRoutes),
+    AppRoutingModule,
+    AuthModule,
+    PatientsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: "toast-top-right",
@@ -46,11 +37,11 @@ import { TokenInterceptor } from './interceptors/token-interceptor';
     NgxUiLoaderModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     HttpClientModule,
-    CustomFormsModule,
+    RouterModule,
   ],
-  providers: [AuthService,
+  providers: [
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

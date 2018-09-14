@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginModel } from '../../models/LoginModel';
+import { LoginModel } from '../models/LoginModel';
 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../auth/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       .login(this.model)
       .subscribe(
         data => { 
-          console.log(data); 
           this.ngxService.stop();
           this.authService.token = data["token"]; 
           this.toastService.success(`Wellcome ${this.model.username}`);

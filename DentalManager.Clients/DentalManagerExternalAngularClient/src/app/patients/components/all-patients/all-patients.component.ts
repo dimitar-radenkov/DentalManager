@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PatientsService } from '../../../services/patients.service';
+import { PatientsService } from '../../services/patients.service';
 import { ToastrService } from 'ngx-toastr';
 
 import { NgxUiLoaderService } from 'ngx-ui-loader';
